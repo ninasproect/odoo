@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+<template id="product_template_qr_code_def">
+        <t t-foreach="docs" t-as="o">
+             <t t-call="web.basic_layout">
+                <div class="page">
+                <t t-set="company" t-value="res_company"/>
+                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)" style="height: 120px;width:250px;display: block;"/>
+                    <img t-if="o.qr_code" t-att-src="'data:image/png;base64,%s' % to_text(o.qr_code)"
+                         style="max-width:250px;
+                                max-height:250px;
+                                margin-left:8%;
+                                display: block;
+                                        "
+                    />
+                    <span t-esc="company.website" style="float:right;display:block;margin-top:60px "/>
+                </div>
+            </t>
+        </t>
+</template>
+<template id="product_product_qr_code_def">
+        <t t-foreach="docs" t-as="o">
+             <t t-call="web.basic_layout">
+                <div class="page">
+                <t t-set="company" t-value="res_company"/>
+                    <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)" style="height: 120px;width:250px;display: block;"/>
+                    <img t-if="o.qr_code" t-att-src="'data:image/png;base64,%s' % to_text(o.qr_code)"
+                         style="max-width:250px;
+                                max-height:250px;
+                                margin-left:8%;
+                                display: block;
+                                        "
+                    />
+                    <span t-esc="company.website" style="float:right;display:block;margin-top:60px "/>
+                </div>
+            </t>
+        </t>
+</template>
+<record id="paperformat_qr_code" model="report.paperformat">
+        <field name="name">QR format</field>
+        <field name="default" eval="True"/>
+        <field name="format">A7</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+</record>
+
+
+<report
+    id="product_template_qr_code_dec"
+    model="product.template"
+    string="QR Code"
+    report_type="qweb-pdf"
+    name="productQRcode.product_template_qr_code_def"
+    file="productQRcode.product_template_qr_code_def"
+    attachment_use="True"
+    attachment="(object.name or '').replace('/','')+'.pdf'"
+    paperformat="productQRcode.paperformat_qr_code"
+/>
+<report
+    id="product_product_qr_code_dec"
+    model="product.product"
+    string="QR Code"
+    report_type="qweb-pdf"
+    name="productQRcode.product_product_qr_code_def"
+    file="productQRcode.product_product_qr_code_def"
+    attachment_use="True"
+    attachment="(object.name or '').replace('/','')+'.pdf'"
+    paperformat="productQRcode.paperformat_qr_code"
+/>
+
+
+
+</data>
+
+</odoo>
+
