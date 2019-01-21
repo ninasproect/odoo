@@ -8,7 +8,7 @@
        
     """,
 
-    'author': "SLIMANI Ninas",
+    'author': "Ninas",
     'website': "",
 
 
