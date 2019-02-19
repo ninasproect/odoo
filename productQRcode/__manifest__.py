@@ -8,7 +8,7 @@
        
     """,
 
-    'author': "SLIMANI Ninas",
+    'author': "Ninas Softs",
     'website': "",
 
 
@@ -16,8 +16,8 @@
     'version': '0.1',
     'license': 'LGPL-3',
     'images': ['images/QRcode.png'],
-    'price': 4.99,
-    'currency': 'EUR',
+    #'price': 4.99,
+    #'currency': 'EUR',
     'depends': ['base','product'],
     'data': [
         #views
